@@ -1,0 +1,9 @@
+{
+    "name": "cxp-serviceability-connector", 
+    "config": {
+      "connector.class": "io.debezium.connector.mongodb.MongoDbConnector", 
+      "mongodb.connection.string": "mongodb://svv8245:xJ%24r3H%5Emf8yF@cxpelapv21.nw1.nwestnetwork.com:27017,cxpelapv22.nw1.nwestnetwork.com:27017,cxpelapv23.nw1.nwestnetwork.com:27017/?authMechanism=PLAIN&replicaSet=rscxpstg&readPreference=secondary&authSource=$external", 
+      "topic.prefix": "cxp-serviceability", 
+      "collection.include.list": "SERVICEABILITY.Serviceability" 
+    }
+}

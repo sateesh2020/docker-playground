@@ -1,0 +1,22 @@
+{
+  "name": "source-sales-creditcard-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "192.168.1.14",
+    "database.port": "5435",
+    "database.user": "postgres",
+    "database.password": "d0ntf0rg3tm3",
+    "database.dbname": "Adventureworks",
+    "topic.prefix": "deb-pg-hr-department",
+    "plugin.name": "pgoutput",
+    "database.server.name": "AdventureWorkssource",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "table.include.list": "humanresources.department",
+    "slot.name": "dbz_humanresources_department"
+  }
+}

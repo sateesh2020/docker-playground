@@ -1,0 +1,44 @@
+version: "3.7"
+x-logging:
+  &default-logging
+  options:
+    max-size: "100m"
+    max-file: "5"
+  driver: json-file
+services:
+  postgres:
+      hostname: postgres
+      build:
+        context: .
+        dockerfile: Dockerfile
+      networks:
+        - postgres_network
+      ports:
+        - 5433:5432
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: sample
+      shm_size: 8g
+      volumes:
+        - postgres-db-volume:/var/lib/postgresql/data
+      healthcheck:
+        test:
+          [
+            "CMD",
+            "pg_isready",
+            "-U",
+            "d0ntf0rg3tm3",
+            "-d",
+            "sample"
+          ]
+        interval: 5s
+        retries: 5
+      restart: always
+
+volumes:
+  postgres-db-volume:
+
+networks:
+  postgres_network:
+    external: true
